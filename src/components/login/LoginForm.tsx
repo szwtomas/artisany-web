@@ -66,7 +66,7 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
             Log in
           </Button>
           <div className="register-redirect-link">
-            Or <a href="">register now!</a>
+            Or <a href="/signup">register now!</a>
           </div>
         </Form.Item>
       </Form>
