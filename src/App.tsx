@@ -1,7 +1,9 @@
-const App = () => {
+import { AppRouter } from "./AppRouter";
+
+const App: React.FC = () => {
   return (
     <>
-      <h1>Hello!</h1>
+      <AppRouter />
     </>
   );
 };

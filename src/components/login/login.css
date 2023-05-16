@@ -1,0 +1,36 @@
+.login-container {
+    width: 100%;
+    margin: 10px 50px;
+}
+
+.login-form {
+    max-width: 400px;
+}
+
+.login-form-forgot {
+    margin-left: 6px;
+}
+
+.login-form-button {
+    width: 100%;
+    max-width: 85px;
+}
+
+.login-page-title {
+    margin-left: 6px;
+}
+
+.login-form-title {
+    margin-left: 6px;
+}
+
+.register-redirect-link {
+    display: inline;
+    margin-left: 10px;
+}
+
+.remember-me-forgot-password-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
