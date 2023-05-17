@@ -18,7 +18,8 @@ nav {
 }
 
 .navbar-search {
-    max-width: 300px;
+    max-width: 250px;
+    margin-right: 40px;
 }
 
 .searchbar-avatar {
@@ -35,4 +36,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     min-width: 180px;
+    margin-left: 20px;
+}
+
+.logout-btn {
+    margin-left: 20px;
 }
