@@ -1,5 +1,5 @@
 import {
-  User,
+  User as FirebaseUser,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -8,20 +8,24 @@ import {
 import { createContext, useEffect, useState } from "react";
 import { firebaseApp } from "../firebase/firebaseApp";
 
+interface User extends FirebaseUser {
+  username?: string;
+}
+
 interface AuthContextProps {
   user: User | null;
-  login: (email: string, password: string) => void;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
   isLoggedIn: () => boolean;
 }
 
 const initialAuthContext: AuthContextProps = {
   user: null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  login: (_email: string, _password: string) => {
+  login: async (_email: string, _password: string) => {
     console.log("Login");
   },
-  logout: () => {
+  logout: async () => {
     console.log("Logout");
   },
 
@@ -41,9 +45,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = (props) => {
 
   useEffect(() => {
     const auth = getAuth(firebaseApp);
-    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
-      setUser(user);
-    });
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user: FirebaseUser | null) => {
+        setUser(user);
+      }
+    );
 
     return () => {
       unsubscribe();
@@ -51,13 +58,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = (props) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    try {
-      const auth = getAuth(firebaseApp);
-      await signInWithEmailAndPassword(auth, email, password);
-      setUser(auth.currentUser);
-    } catch (err) {
-      console.error(`Error logging in: ${err}`);
-    }
+    const auth = getAuth(firebaseApp);
+    await signInWithEmailAndPassword(auth, email, password);
+    setUser(auth.currentUser);
   };
 
   const logout = async () => {
