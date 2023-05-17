@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { LoginFormValues } from "./LoginFormValues";
 import "./login.css";
 
@@ -20,17 +20,17 @@ export const LoginForm: React.FC<LoginFormProps> = (props: LoginFormProps) => {
         onFinish={props.onSubmit}
       >
         <Form.Item
-          name="username"
+          name="email"
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: "Please input your Email!",
             },
           ]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            prefix={<MailOutlined className="site-form-item-icon" />}
+            placeholder="Email"
           />
         </Form.Item>
         <Form.Item
